@@ -1,0 +1,131 @@
+@import 'reset';
+@import 'vars';
+
+@import url('http://fonts.googleapis.com/css?family=Lato:300,700');
+
+body {
+	font-family: $font-family;
+	min-width: 350px;
+}
+
+#header {
+	overflow: hidden;
+	background-color: $header-fill;
+	padding: 90px 10px;
+	transition: $transition-duration;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 99;
+}
+
+#header a {
+	float: left;
+	color: $header-items;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
+}
+
+#header #logo {
+	font-size: 30px;
+	font-weight: bold;
+	transition: $transition-duration;
+	color: $logo;
+}
+
+#nav a {
+	border: 2px solid $transparent;
+}
+
+a:hover:not(#logo):not(#ham) {
+	border: 2px solid $menu-active !important;
+}
+
+#nav a.active {
+	background-color: $menu-active;
+	color: black;
+}
+
+#nav {
+	float: right;
+	font-weight: 500;
+	position: relative;
+}
+
+#ham {
+	display: none;
+	position: absolute;
+	top: 67px;
+	right: 3%;
+}
+
+.visible {
+	display: flex;
+}
+
+@media screen and (max-width: 620px) {
+	#header {
+		padding: 3px 10px 20px !important; /* Use !important to make sure that JavaScript doesn't override the padding on small screens */
+		#logo {
+			font-size: 25px;
+		}
+		#ham {
+			top: 52px;
+		}
+	}
+	#header a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	#nav a.inactive:not(.show) {
+		display: none;
+	}
+	#nav {
+		float: none;
+		.responsive a {
+			float: none;
+			display: block;
+			text-align: left;
+		}
+	}
+	#menu {
+		float: none;
+	}
+}
+
+section {
+	padding: $section-padding;
+	width: 100%;
+}
+
+#banner {
+	margin-top: 220px;
+}
+
+#one {
+	background-color: $one-background;
+}
+
+.odd {
+	background-color: $one-background;
+}
+
+.even {
+	background-color: $two-background;
+}
+
+.container {
+	padding-left: 10vw;
+	padding-right: 10vw;
+}
+
+footer {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
