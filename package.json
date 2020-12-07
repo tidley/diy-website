@@ -1,0 +1,29 @@
+{
+	"name": "diy-website",
+	"version": "1.0.0",
+	"description": "Make a responsive website using Excel.",
+	"main": "index.js",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "nyc --reporter=text mocha --exit"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tidley/diy-website.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tidley/diy-website/issues"
+	},
+	"homepage": "https://github.com/tidley/diy-website#readme",
+	"dependencies": {
+		"chai": "^4.2.0",
+		"chai-fs": "^2.0.0",
+		"mocha": "^8.2.1",
+		"nyc": "^15.1.0"
+	}
+}
