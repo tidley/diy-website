@@ -4,24 +4,30 @@ chai.use(require('chai-fs'));
 
 const fs = require('fs');
 
+const { delFile, makeFile } = require('../src/fileWriter.js');
+
+// TEMPLATE //
+//////////////
+// describe('this suite'), () = {
+// // fail
+// it('should not do', () => {
+// assert(true);
+// });
+// pass
+// it('should do', () => {
+// assert(true);
+// });
+// });
+//////////////
+// TEMPLATE //
+
 const knownData = 'I like to ride my bicycle.';
 const testHtml = './test/test.html';
 
-function rmTestHtml() {
-	try {
-		fs.unlinkSync(testHtml + '1');
-		fs.unlinkSync(testHtml);
-	} catch {}
+function rmTestFiles() {
+	delFile(testHtml + '1');
+	delFile(testHtml);
 }
-
-// TEMPLATE //
-//////////////
-// what i do
-// fail
-
-// pass
-//////////////
-// TEMPLATE //
 
 // buffers https://www.tutorialkart.com/nodejs/node-js-convert-array-to-buffer/
 
@@ -57,26 +63,36 @@ describe('Data to html', () => {
 	// Before events
 	// Delete test files
 	before(() => {
-		rmTestHtml();
+		rmTestFiles();
 	});
+
 	// Create .html file
 
 	// fail
-	it('should not create an html file at a given location', () => {
-		fs.writeFile(testHtml + '1', 'wot eva', (err) => {
-			if (err) throw err;
-		});
+	it('should not create an html file at a given location', async () => {
+		await makeFile(testHtml + '1', knownData);
 		assert.notPathExists(
 			testHtml,
 			'Error: File found at "./test/test.html" - delete and re-run.',
 		);
 	});
+	// fail
+	it('should not create an html file at a given location - wrong permissions', async () => {
+		const _root = '/test.html';
+		const _err = await makeFile(_root);
+		console.log('_err', _err);
+		assert.notPathExists(
+			_root,
+			'Error: File found at "./test/test.html" - delete and re-run.',
+		);
+		assert.notEqual(_err, undefined);
+	});
 	// pass
-	it('should create an html file at a given location', () => {
-		fs.writeFile(testHtml, 'wot eva', (err) => {
-			if (err) throw err;
-		});
+	it('should create an html file at a given location', async () => {
+		const _err = await makeFile(testHtml);
+		console.log('_err', _err);
 		assert.pathExists(testHtml, 'Error: File not found.');
+		assert.equal(_err, undefined);
 	});
 
 	// Write to .html file
@@ -138,16 +154,6 @@ describe('Data to html', () => {
 	// After events
 	// Delete test files
 	after(() => {
-		rmTestHtml();
+		rmTestFiles();
 	});
-});
-
-fs.writeFile(testHtml + '2', knownData, 'utf8', (err) => {
-	if (err) throw err;
-});
-fs.writeFile(testHtml + '3', knownData, 'ascii', (err) => {
-	if (err) throw err;
-});
-fs.writeFile(testHtml + '4', knownData, 'base64', (err) => {
-	if (err) throw err;
 });
