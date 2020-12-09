@@ -2,18 +2,28 @@ const chai = require('chai');
 const assert = chai.assert;
 chai.use(require('chai-fs'));
 
-const fs = require('fs');
+const {
+	delFile,
+	writeToFile,
+	readFromFile,
+	appendToFile,
+} = require('../src/fileIO.js');
 
-// describe('this suite', () => {
-// 	// fail
-// 	it('should not do', () => {
-// 		assert(true);
-// 	});
-// // 	pass
-// 	it('should do', () => {
-// 		assert(true);
-// 	});
+// TEMPLATE //
+//////////////
+// describe('this suite'), () = {
+// // fail
+// it('should not do', () => {
+// assert(true);
 // });
+// pass
+// it('should do', async () => {
+// await thing();
+// assert(true);
+// });
+// });
+//////////////
+// TEMPLATE //
 
 const knownData = '<a href="index.html" id="logo">DummiesGuideTo.Crypto</a>';
 

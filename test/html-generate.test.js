@@ -2,9 +2,12 @@ const chai = require('chai');
 const assert = chai.assert;
 chai.use(require('chai-fs'));
 
-const fs = require('fs');
-
-const { delFile, makeFile } = require('../src/fileWriter.js');
+const {
+	delFile,
+	writeToFile,
+	readFromFile,
+	appendToFile,
+} = require('../src/fileIO.js');
 
 // TEMPLATE //
 //////////////
@@ -14,7 +17,8 @@ const { delFile, makeFile } = require('../src/fileWriter.js');
 // assert(true);
 // });
 // pass
-// it('should do', () => {
+// it('should do', async () => {
+// await thing();
 // assert(true);
 // });
 // });
@@ -22,7 +26,7 @@ const { delFile, makeFile } = require('../src/fileWriter.js');
 // TEMPLATE //
 
 const knownData = 'I like to ride my bicycle.';
-const testHtml = './test/test.html';
+const testHtml = './test.html';
 
 function rmTestFiles() {
 	delFile(testHtml + '1');
@@ -59,7 +63,7 @@ describe('Memory', () => {
 	});
 });
 
-describe('Data to html', () => {
+describe('Create file', () => {
 	// Before events
 	// Delete test files
 	before(() => {
@@ -67,90 +71,54 @@ describe('Data to html', () => {
 	});
 
 	// Create .html file
-
 	// fail
-	it('should not create an html file at a given location', async () => {
-		await makeFile(testHtml + '1', knownData);
+	it('should not create an html file at a given location', () => {
+		const failFile = testHtml + '1';
+		writeToFile(failFile);
 		assert.notPathExists(
 			testHtml,
-			'Error: File found at "./test/test.html" - delete and re-run.',
+			'Error: File found at ' + failFile + ' - delete and re-run.',
 		);
-	});
-	// fail
-	it('should not create an html file at a given location - wrong permissions', async () => {
-		const _root = '/test.html';
-		const _err = await makeFile(_root);
-		console.log('_err', _err);
-		assert.notPathExists(
-			_root,
-			'Error: File found at "./test/test.html" - delete and re-run.',
-		);
-		assert.notEqual(_err, undefined);
-	});
-	// pass
-	it('should create an html file at a given location', async () => {
-		const _err = await makeFile(testHtml);
-		console.log('_err', _err);
-		assert.pathExists(testHtml, 'Error: File not found.');
-		assert.equal(_err, undefined);
 	});
 
+	// pass
+	it('should create an html file at a given location', () => {
+		writeToFile(testHtml);
+		assert.pathExists(testHtml, 'Error: File not found.');
+	});
+});
+
+describe('Write to file', () => {
 	// Write to .html file
 	// fail
-	it('should not write data in known format to test html file', () => {
-		fs.writeFile(testHtml, knownData, 'utf8', (err) => {
-			if (err) throw err;
-		});
-		fs.readFileSync(testHtml, (err, data) => {
-			if (err) throw err;
-			console.log(data);
-			let checkContents = data;
-			assert.notEqual(checkContents, knownData, 'Error: Data recognised');
-		});
+	//"utf8" | "ascii" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" |
+	it('should not write data in known format to test html file', async () => {
+		await writeToFile(testHtml, knownData, 'base64');
+		let data = await readFromFile(testHtml);
+		assert.notDeepEqual(data, knownData, 'Error: Data recognised');
 	});
+
 	// pass
-	it('should write and read data in known format to test html file', () => {
-		fs.writeFile(testHtml, knownData, 'utf8', (err) => {
-			if (err) throw err;
-		});
-		fs.readFile(testHtml, (err, data) => {
-			if (err) throw err;
-			let checkContents = data.toString('utf8');
-			assert.equal(checkContents, knownData, 'Error: Data recognised');
-		});
+	it('should write and read data in known format to test html file', async () => {
+		await writeToFile(testHtml, knownData);
+		let data = await readFromFile(testHtml);
+		assert.deepEqual(data, knownData, 'Error: Data recognised');
 	});
+
 	// fail
-	it('should not append data to html file', () => {
-		fs.appendFile(testHtml, '', (err) => {
-			if (err) throw err;
-		});
-		fs.readFileSync(testHtml, (err, data) => {
-			if (err) throw err;
-			console.log(data);
-			let checkContents = data;
-			assert.notEqual(
-				checkContents,
-				knownData + knownData,
-				'Error: Data recognised',
-			);
-		});
+	it('should not append data to html file', async () => {
+		await appendToFile(testHtml, '');
+		let data = await readFromFile(testHtml);
+		assert.notEqual(data, knownData + knownData, 'Error: Data recognised');
 	});
+
 	// pass
-	it('should append data to html file', () => {
-		fs.appendFile(testHtml, knownData, (err) => {
-			if (err) throw err;
-		});
-		fs.readFileSync(testHtml, (err, data) => {
-			if (err) throw err;
-			console.log(data);
-			let checkContents = data;
-			assert.notEqual(
-				checkContents,
-				knownData + knownData,
-				'Error: Data recognised',
-			);
-		});
+	it('should append data to html file', async () => {
+		await appendToFile(testHtml, knownData);
+		let data = await readFromFile(testHtml);
+		assert.equal(data, knownData + knownData, 'Error: Data recognised');
 	});
+
 	// After events
 	// Delete test files
 	after(() => {
