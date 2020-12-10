@@ -19,44 +19,38 @@ const {
 
 let html = [];
 
-// Write to index.html
-const fileName = 'index.html';
-writeToFile(fullAdd(fileName));
+function goBuild(newLine, fin = null) {
+	html = build(html, newLine, fin);
+}
 
 function preBody() {
 	// File headers
-	build(html, DOCTYPE);
-	build(html, HTML);
-	build(html, HEAD);
+	goBuild(DOCTYPE);
+	goBuild(HTML);
+	goBuild(HEAD);
 	// Page Title
 	const title = 'Dummies Guide to Crypto';
-	build(html, TITLE);
-	build(html, title);
-	build(html, TITLE, 1);
+	goBuild(TITLE);
+	goBuild(title);
+	goBuild(TITLE, 1);
 	// Content header
 	DOCHEADER.forEach((element) => {
-		build(html, element);
+		goBuild(element);
 	});
-	build(html, HEAD, 1);
+	goBuild(HEAD, 1);
 }
 
 function body01() {
 	// Start body
-	build(html, BODY);
+	goBuild(BODY);
 	// Footer
 	footer();
 	// End body
-	build(html, BODY, 1);
+	goBuild(BODY, 1);
 }
 
 function footer() {
-	build(html, FOOTER);
-}
-
-function buildIt(html) {
-	html.forEach((element) => {
-		appendToFile(fullAdd(fileName), element);
-	});
+	goBuild(FOOTER);
 }
 
 // Make it work
@@ -64,4 +58,14 @@ preBody();
 
 body01();
 
-buildIt(html);
+makeIt(html);
+
+// Write to index.html
+const fileName = 'index.html';
+function makeIt(contentArray) {
+	let newStr = '';
+	contentArray.forEach((element) => {
+		newStr += element;
+	});
+	writeToFile(fullAdd(fileName), newStr);
+}

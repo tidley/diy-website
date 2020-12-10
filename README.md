@@ -4,8 +4,19 @@ Make a responsive website using Excel.
 
 Effects on scrolling and resizing can be applied by adding a section that represents the new page layout. E.g. when a page is moved to mobile layout the menu items might have different classes applied to create the new layout.
 
-Recognised behaviour [implemented]
-Hidden hamburger to provide GUI change when made to mobile format for opening navigation item menu [NO]
+To do [% complete]
+
+1. Hidden hamburger to provide GUI change when made to mobile format for opening navigation item menu [0]
+1. Recognise key fields: [0]
+   1. Title
+   1. Menu items
+   1. Headings
+      - Main
+      - Section-1
+   1. Content
+   1. Footer
+1. Detect size of cells [0]
+1. Support desktop and mobile [0]
 
 ---
 
@@ -13,9 +24,17 @@ Hidden hamburger to provide GUI change when made to mobile format for opening na
 
 ### <HEAD>
 
-title
-meta params
-stylesheet
+| Item # | Section       | Type          | ID  | Class | Close | UID |
+| ------ | ------------- | ------------- | --- | ----- | ----- | --- |
+| 0      | Document type | !DOCTYPE html |     |       | 0     | H-0 |
+| 1      | Html          | html          |     |       |       | H-1 |
+| 2      | Head          | head          |     |       |       | H-2 |
+| 3      | Title         | title         |     |       | 3     | H-3 |
+| 4      | Viewport      | meta          |     |       |       | H-4 |
+| 5      | Content Type  | meta          |     |       | 5     | H-5 |
+| 6      | Description   | meta          |     |       | 6     | H-6 |
+| 7      | Keywords      | meta          |     |       | 7     | H-7 |
+| 8      | CSS           | link          |     |       |       | H-8 |
 
 ### <BODY>
 
