@@ -15,7 +15,8 @@ To do [% complete]
       - Section-1
    1. Content
    1. Footer
-1. Detect size of cells [0]
+1. Build API [0]
+   - https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#dimension
 1. Support desktop and mobile [0]
 
 ---
@@ -24,31 +25,31 @@ To do [% complete]
 
 ### <HEAD>
 
-| Item # | Section       | Type          | ID  | Class | Close | UID |
-| ------ | ------------- | ------------- | --- | ----- | ----- | --- |
-| 0      | Document type | !DOCTYPE html |     |       | 0     | H-0 |
-| 1      | Html          | html          |     |       |       | H-1 |
-| 2      | Head          | head          |     |       |       | H-2 |
-| 3      | Title         | title         |     |       | 3     | H-3 |
-| 4      | Viewport      | meta          |     |       |       | H-4 |
-| 5      | Content Type  | meta          |     |       | 5     | H-5 |
-| 6      | Description   | meta          |     |       | 6     | H-6 |
-| 7      | Keywords      | meta          |     |       | 7     | H-7 |
-| 8      | CSS           | link          |     |       |       | H-8 |
+| Item # | Section       | Type          | ID  | Class | Close | UID   |
+| ------ | ------------- | ------------- | --- | ----- | ----- | ----- |
+| 0      | Document type | !DOCTYPE html |     |       | 0     | H.0   |
+| 1      | Html          | html          |     |       |       | H.1   |
+| 2      | Head          | head          |     |       |       | H.2   |
+| 3      | Title         | title         |     |       | 3     | H.3   |
+| 4      | Viewport      | meta          |     |       |       | H.4.1 |
+| 5      | Content Type  | meta          |     |       | 5     | H.4.2 |
+| 6      | Description   | meta          |     |       | 6     | H.4.3 |
+| 7      | Keywords      | meta          |     |       | 7     | H.4.4 |
+| 8      | CSS           | link          |     |       |       | H.8   |
 
 ### <BODY>
 
-| Item # | Section            | Type   | ID     | Class    | Close      | UID |
-| ------ | ------------------ | ------ | ------ | -------- | ---------- | --- |
-| 0      | Body               | body   |        |          |            | B-0 |
-| 1      | Header             | header | header |          |            | B-1 |
-| 2      | Logo               | a      | logo   |          | 2          | B-2 |
-| 3      | Nav                | div    | menu   |          |            | B-3 |
-| 4      | Nav item container | div    | nav    |          |            | B-4 |
-| 5      | Nav sub-item 1     | a      |        | active   | 5          | B-5 |
-| 6      | Nav sub-item 2     | a      |        | inactive | 6          | B-6 |
-| 7      | Nav sub-item 3     | a      |        | inactive | 7, 4       | B-7 |
-| 8      | Nav hamburger      | a      | ham    |          | 8, 3, 1, 0 | B-8 |
+| Item # | Section            | Type   | ID     | Class    | Close      | UID                   |
+| ------ | ------------------ | ------ | ------ | -------- | ---------- | --------------------- |
+| 0      | Body               | body   |        |          |            | B.0                   |
+| 1      | Header             | header | header |          |            | B.1                   |
+| 2      | Logo               | a      | logo   |          | 2          | B.2                   |
+| 3      | Nav                | div    | menu   |          |            | B.3                   |
+| 4      | Nav item container | div    | nav    |          |            | B.4                   |
+| 5      | Nav sub-item 1     | a      |        | active   | 5          | B.5.1                 |
+| 6      | Nav sub-item 2     | a      |        | inactive | 6          | B.5.2                 |
+| 7      | Nav sub-item 3     | a      |        | inactive | 7, 4       | B.5.3.B.4.0           |
+| 8      | Nav hamburger      | a      | ham    |          | 8, 3, 1, 0 | B.6.B.3.0.B.1.0.B.0.0 |
 
 ---
 
