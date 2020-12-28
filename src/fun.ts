@@ -1,11 +1,10 @@
 const projDir = './quick-site/';
 
-function fullAdd(fileName) {
+function fullAdd(fileName: string): string {
   return projDir + fileName;
 }
 
-// Buidl
-function build(html, line, close) {
+function build(html: Array<string>, line: string, close?: any): Array<string> {
   if (close) {
     line = fin(line);
   }
@@ -13,8 +12,8 @@ function build(html, line, close) {
   return html;
 }
 
-function fin(open) {
+function fin(open: string): string {
   return '</' + open.split('<')[1];
 }
 
-module.exports = { fullAdd, build };
+export { fullAdd, build };
