@@ -1,6 +1,7 @@
 const projDir = './quick-site/';
 
 function fullAdd(fileName: string): string {
+  console.log('fileName;', fileName);
   return projDir + fileName;
 }
 

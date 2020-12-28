@@ -62,11 +62,11 @@ preBody();
 
 body01();
 
-makeIt(html);
-
 // Write to index.html
 const fileName = 'index.html';
-function makeIt(contentArray: Array<string>) {
+makeIt(fileName, html);
+
+function makeIt(fileName: string, contentArray: Array<string>) {
   let newStr = '';
   contentArray.forEach((element: string) => {
     newStr += element;
