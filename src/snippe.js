@@ -18,5 +18,5 @@ var DOCHEADER = [
 exports.DOCHEADER = DOCHEADER;
 var BODY = '<body>';
 exports.BODY = BODY;
-var FOOTER = "<footer id='footer'><p>Built with love &#10084</p><ul class='icons'></ul></footer>";
+var FOOTER = "<footer id='footer'><p>Compiled with love &#10084</p><ul class='icons'></ul></footer>";
 exports.FOOTER = FOOTER;

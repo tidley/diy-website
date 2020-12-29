@@ -1,17 +1,18 @@
 "use strict";
 exports.__esModule = true;
-var file_io_1 = require("./src/file-io");
 var fun_1 = require("./src/fun");
+var navBar_1 = require("./src/navBar");
 var snippe_1 = require("./src/snippe");
 var html = [];
 function goBuild(newLine, fin) {
     if (fin) {
-        html = fun_1.build(html, newLine, fin);
+        html = fun_1.append(html, newLine, fin);
     }
     else {
-        html = fun_1.build(html, newLine);
+        html = fun_1.append(html, newLine);
     }
 }
+exports.goBuild = goBuild;
 function preBody() {
     // File headers
     goBuild(snippe_1.DOCTYPE);
@@ -28,9 +29,16 @@ function preBody() {
     });
     goBuild(snippe_1.HEAD, 1);
 }
+var menuOptions = [
+    ['index.html', 'Home'],
+    ['#guides', 'Guides', 'openMenu()'],
+    ['#contact', 'Contact', 'openMenu()'],
+];
 function body01() {
     // Start body
     goBuild(snippe_1.BODY);
+    // Nav manu
+    goBuild(navBar_1.makeMenu(menuOptions));
     // Footer
     footer();
     // End body
@@ -39,16 +47,9 @@ function body01() {
 function footer() {
     goBuild(snippe_1.FOOTER);
 }
-// Make it work
+// Compile sections
 preBody();
 body01();
 // Write to index.html
 var fileName = 'index.html';
-makeIt(fileName, html);
-function makeIt(fileName, contentArray) {
-    var newStr = '';
-    contentArray.forEach(function (element) {
-        newStr += element;
-    });
-    file_io_1.writeToFile(fun_1.fullAdd(fileName), newStr);
-}
+fun_1.compile(fileName, html);

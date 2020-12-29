@@ -1,3 +1,5 @@
+import { delFile, writeToFile, readFromFile, appendToFile } from './fileIo';
+
 const projDir = './quick-site/';
 
 function fullAdd(fileName: string): string {
@@ -5,7 +7,7 @@ function fullAdd(fileName: string): string {
   return projDir + fileName;
 }
 
-function build(html: Array<string>, line: string, close?: any): Array<string> {
+function append(html: Array<string>, line: string, close?: any): Array<string> {
   if (close) {
     line = fin(line);
   }
@@ -17,4 +19,12 @@ function fin(open: string): string {
   return '</' + open.split('<')[1];
 }
 
-export { fullAdd, build };
+function compile(fileName: string, contentArray: Array<string>) {
+  let newStr = '';
+  contentArray.forEach((element: string) => {
+    newStr += element;
+  });
+  writeToFile(fullAdd(fileName), newStr);
+}
+
+export { fullAdd, append, compile };

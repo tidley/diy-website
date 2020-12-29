@@ -1,11 +1,8 @@
-import {
-  delFile,
-  writeToFile,
-  readFromFile,
-  appendToFile,
-} from './src/file-io';
+import { delFile, writeToFile, readFromFile, appendToFile } from './src/fileIo';
 
-import { fullAdd, build } from './src/fun';
+import { append, compile } from './src/fun';
+
+import { makeMenu } from './src/navBar';
 
 import {
   DOCTYPE,
@@ -21,9 +18,9 @@ let html = [];
 
 function goBuild(newLine: string, fin?: any) {
   if (fin) {
-    html = build(html, newLine, fin);
+    html = append(html, newLine, fin);
   } else {
-    html = build(html, newLine);
+    html = append(html, newLine);
   }
 }
 
@@ -44,9 +41,17 @@ function preBody() {
   goBuild(HEAD, 1);
 }
 
+const menuOptions = [
+  ['index.html', 'Home'],
+  ['#guides', 'Guides', 'openMenu()'],
+  ['#contact', 'Contact', 'openMenu()'],
+];
+
 function body01() {
   // Start body
   goBuild(BODY);
+  // Nav manu
+  goBuild(makeMenu(menuOptions));
   // Footer
   footer();
   // End body
@@ -57,19 +62,13 @@ function footer() {
   goBuild(FOOTER);
 }
 
-// Make it work
+// Compile sections
 preBody();
 
 body01();
 
 // Write to index.html
 const fileName = 'index.html';
-makeIt(fileName, html);
+compile(fileName, html);
 
-function makeIt(fileName: string, contentArray: Array<string>) {
-  let newStr = '';
-  contentArray.forEach((element: string) => {
-    newStr += element;
-  });
-  writeToFile(fullAdd(fileName), newStr);
-}
+export { goBuild };

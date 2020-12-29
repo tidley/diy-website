@@ -14,6 +14,6 @@ const DOCHEADER = [
 const BODY = '<body>';
 
 const FOOTER =
-  "<footer id='footer'><p>Built with love &#10084</p><ul class='icons'></ul></footer>";
+  "<footer id='footer'><p>Compiled with love &#10084</p><ul class='icons'></ul></footer>";
 
 export { DOCTYPE, HTML, HEAD, TITLE, DOCHEADER, BODY, FOOTER };
