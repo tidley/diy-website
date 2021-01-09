@@ -36,18 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.fileFuns = void 0;
 var fs_1 = require("fs");
-function delFile(fileName) {
-    try {
-        fs_1.promises.unlink(fileName);
+function errHandle(err) {
+    if (err) {
+        return err.toString();
     }
-    catch (error) {
-        return error.toString();
+    else {
+        return 'ok';
     }
 }
-exports.delFile = delFile;
-function writeToFile(fileName, contents, encoding) {
-    return __awaiter(this, void 0, void 0, function () {
+var fileFuns = {
+    delFile: function (fileName) {
+        try {
+            fs_1.promises.unlink(fileName);
+        }
+        catch (error) {
+            return error.toString();
+        }
+    },
+    writeToFile: function (fileName, contents, encoding) { return __awaiter(void 0, void 0, void 0, function () {
         var _encoding, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -62,11 +70,8 @@ function writeToFile(fileName, contents, encoding) {
                     return [2 /*return*/, response];
             }
         });
-    });
-}
-exports.writeToFile = writeToFile;
-function appendToFile(fileName, data) {
-    return __awaiter(this, void 0, void 0, function () {
+    }); },
+    appendToFile: function (fileName, data) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -79,11 +84,8 @@ function appendToFile(fileName, data) {
                     return [2 /*return*/, response];
             }
         });
-    });
-}
-exports.appendToFile = appendToFile;
-function readFromFile(fileName, encoding) {
-    return __awaiter(this, void 0, void 0, function () {
+    }); },
+    readFromFile: function (fileName, encoding) { return __awaiter(void 0, void 0, void 0, function () {
         var _encoding, data, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -102,14 +104,6 @@ function readFromFile(fileName, encoding) {
                 case 4: return [2 /*return*/];
             }
         });
-    });
-}
-exports.readFromFile = readFromFile;
-function errHandle(err) {
-    if (err) {
-        return err.toString();
-    }
-    else {
-        return 'ok';
-    }
-}
+    }); }
+};
+exports.fileFuns = fileFuns;

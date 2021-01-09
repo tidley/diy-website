@@ -1,30 +1,34 @@
-import { delFile, writeToFile, readFromFile, appendToFile } from './fileIo';
+import { fileFuns } from './fileIo';
 
 const projDir = './quick-site/';
 
 function fullAdd(fileName: string): string {
-  console.log('fileName;', fileName);
-  return projDir + fileName;
-}
-
-function append(html: Array<string>, line: string, close?: any): Array<string> {
-  if (close) {
-    line = fin(line);
-  }
-  html[html.length] = line;
-  return html;
+    console.log('fileName;', fileName);
+    return projDir + fileName;
 }
 
 function fin(open: string): string {
-  return '</' + open.split('<')[1];
+    return '</' + open.split('<')[1];
 }
 
-function compile(fileName: string, contentArray: Array<string>) {
-  let newStr = '';
-  contentArray.forEach((element: string) => {
-    newStr += element;
-  });
-  writeToFile(fullAdd(fileName), newStr);
-}
+const funs = {
+    //
+    append: (html: Array<string>, line: string, close?: any): Array<string> => {
+        if (close) {
+            line = fin(line);
+        }
+        html[html.length] = line;
+        return html;
+    },
 
-export { fullAdd, append, compile };
+    //
+    compile: (fileName: string, contentArray: Array<string>) => {
+        let newStr = '';
+        contentArray.forEach((element: string) => {
+            newStr += element;
+        });
+        fileFuns.writeToFile(fullAdd(fileName), newStr);
+    },
+};
+
+export { funs };

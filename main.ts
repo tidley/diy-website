@@ -1,65 +1,55 @@
-import { delFile, writeToFile, readFromFile, appendToFile } from './src/fileIo';
+import { funs } from './src/fun';
 
-import { append, compile } from './src/fun';
+import { nav } from './src/navBar';
 
-import { makeMenu } from './src/navBar';
-
-import {
-  DOCTYPE,
-  HTML,
-  HEAD,
-  TITLE,
-  DOCHEADER,
-  BODY,
-  FOOTER,
-} from './src/snippe';
+import { snips } from './src/snippe';
 
 let html = [];
 
 function goBuild(newLine: string, fin?: any) {
-  if (fin) {
-    html = append(html, newLine, fin);
-  } else {
-    html = append(html, newLine);
-  }
+    if (fin) {
+        html = funs.append(html, newLine, fin);
+    } else {
+        html = funs.append(html, newLine);
+    }
 }
 
 function preBody() {
-  // File headers
-  goBuild(DOCTYPE);
-  goBuild(HTML);
-  goBuild(HEAD);
-  // Page Title
-  const title = 'Dummies Guide to Crypto';
-  goBuild(TITLE);
-  goBuild(title);
-  goBuild(TITLE, 1);
-  // Content header
-  DOCHEADER.forEach((element) => {
-    goBuild(element);
-  });
-  goBuild(HEAD, 1);
+    // File headers
+    goBuild(snips.DOCTYPE);
+    goBuild(snips.HTML);
+    goBuild(snips.HEAD);
+    // Page Title
+    const title = 'Dummies Guide to Crypto';
+    goBuild(snips.TITLE);
+    goBuild(title);
+    goBuild(snips.TITLE, 1);
+    // Content header
+    snips.DOCHEADER.forEach((element) => {
+        goBuild(element);
+    });
+    goBuild(snips.HEAD, 1);
 }
 
 const menuOptions = [
-  ['index.html', 'Home'],
-  ['#guides', 'Guides', 'openMenu()'],
-  ['#contact', 'Contact', 'openMenu()'],
+    ['index.html', 'Home'],
+    ['#guides', 'Guides', 'openMenu()'],
+    ['#contact', 'Contact', 'openMenu()'],
 ];
 
 function body01() {
-  // Start body
-  goBuild(BODY);
-  // Nav manu
-  goBuild(makeMenu(menuOptions));
-  // Footer
-  footer();
-  // End body
-  goBuild(BODY, 1);
+    // Start body
+    goBuild(snips.BODY);
+    // Nav manu
+    goBuild(nav.makeMenu(menuOptions));
+    // Footer
+    footer();
+    // End body
+    goBuild(snips.BODY, 1);
 }
 
 function footer() {
-  goBuild(FOOTER);
+    goBuild(snips.FOOTER);
 }
 
 // Compile sections
@@ -69,6 +59,6 @@ body01();
 
 // Write to index.html
 const fileName = 'index.html';
-compile(fileName, html);
+funs.compile(fileName, html);
 
 export { goBuild };
