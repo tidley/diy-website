@@ -4,20 +4,26 @@ Make a responsive website using Excel.
 
 Effects on scrolling and resizing can be applied by adding a section that represents the new page layout. E.g. when a page is moved to mobile layout the menu items might have different classes applied to create the new layout.
 
-To do [% complete]
+## Functions
 
-1. Hidden hamburger to provide GUI change when made to mobile format for opening navigation item menu [0]
-1. Recognise key fields: [0]
-   1. Title
-   1. Menu items
-   1. Headings
-      - Main
-      - Section-1
-   1. Content
-   1. Footer
-1. Build API [0]
-   - https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#dimension
-1. Support desktop and mobile [0]
+1. Write index page
+    1. Build .html
+        1. Sections
+            1. Title
+            1. Menu items
+            1. Hidden hamburger
+            1. Headings
+                - Main
+                - Section-1
+            1. Content
+            1. Footer
+        1. Variables
+        1. Functions
+    1. Build .css
+        1.
+    1. Build .js
+    1. Build API [0]
+        - https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#dimension
 
 ---
 
