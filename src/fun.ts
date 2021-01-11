@@ -12,7 +12,6 @@ function fin(open: string): string {
 }
 
 const funs = {
-    //
     append: (html: Array<string>, line: string, close?: any): Array<string> => {
         if (close) {
             line = fin(line);

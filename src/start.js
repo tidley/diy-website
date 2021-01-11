@@ -1,12 +1,12 @@
-import { funs } from './src/fun';
+const { funs } = require('./fun.js');
 
-import { nav } from './src/navBar';
+const { nav } = require('./navBar.js');
 
-import { snips } from './src/snippe';
+const { snips } = require('./snippe.js');
 
 let html = [];
 
-function goBuild(newLine: string, fin?: any) {
+function goBuild(newLine, fin) {
     if (fin) {
         html = funs.append(html, newLine, fin);
     } else {
@@ -14,15 +14,14 @@ function goBuild(newLine: string, fin?: any) {
     }
 }
 
-function preBody() {
+function preBody(values) {
     // File headers
     goBuild(snips.DOCTYPE);
     goBuild(snips.HTML);
     goBuild(snips.HEAD);
     // Page Title
-    const title = 'Dummies Guide to Crypto';
     goBuild(snips.TITLE);
-    goBuild(title);
+    goBuild(values.A1);
     goBuild(snips.TITLE, 1);
     // Content header
     snips.DOCHEADER.forEach((element) => {
@@ -57,13 +56,16 @@ async function getVals() {
     let title = '';
 }
 
-// Compile sections
-preBody();
+function coreFun(values) {
+    // Compile sections
+    preBody(values);
 
-body01();
-
-// Write to index.html
-const fileName = 'index.html';
-funs.compile(fileName, html);
+    body01();
+    // Write to index.html
+    const fileName = 'index.html';
+    funs.compile(fileName, html);
+}
 
 // export { goBuild };
+
+module.exports = coreFun;
